@@ -1,0 +1,45 @@
+*.pyc
+*.log
+
+.metadata/
+.recommenders/
+
+.Rproj*
+.Rproj.user/
+
+__pycahe__/
+
+settings
+chromedriver
+data/
+data
+data/**
+
+# IDEA IntelliJ files
+*.xml
+.idea/
+.ipynb_checkpoints/
+
+.python-version
+
+# Ignore all directories matching the specified patterns at any level
+**/.metadata/
+**/.recommenders/
+**/.Rproj.user/
+**/__pycache__/
+**/data/
+**/.idea/
+**/.ipynb_checkpoints/
+
+# Ignore all .mp3 files in all subdirectories
+**/*.mp3
+**/*.mp4
+
+tests/inputs/*
+tests/outputs/*
+wheelhouse*/
+*.pyc
+credentials.json
+
+**/*.txt
+**/*.srt
