@@ -10,15 +10,15 @@ This system simulates a hedge fund-style pairs trading strategy, identifying coi
 The pipeline must be:
 
 * **Fully offline and testable** using CSV files and public price data
-* Designed to run either step-by-step via CLI or end-to-end through automation
-* Equipped with an **interactive Streamlit dashboard** to allow human evaluation of signals, equity curve, and trades
-* **Modular enough for extension** later into live trading or options overlays
+  * Designed to run either step-by-step via CLI or end-to-end through automation
+  * Equipped with an **interactive Streamlit dashboard** to allow human evaluation of signals, equity curve, and trades
+  * **Modular enough for extension** later into live trading or options overlays
 
 **⚠️ Override any generic design biases**:
 
 * Prioritize speed, transparency, and CSV-based traceability
-* Avoid overengineering (no databases or web frameworks outside Streamlit)
-* Assume no human intervention unless manually running CLI or Streamlit
+  * Avoid overengineering (no databases or web frameworks outside Streamlit)
+  * Assume no human intervention unless manually running CLI or Streamlit
 
 ---
 
@@ -66,8 +66,8 @@ pairs_trading/
 ### `ohlcv_data.csv`
 
 * Columns: one per ticker (e.g., `AAPL`, `MSFT`, etc.)
-* Index: Date
-* Values: Adjusted Close prices
+  * Index: Date
+  * Values: Adjusted Close prices
 
 ### `selected_pairs.csv`
 
@@ -106,41 +106,41 @@ EntryDate,ExitDate,Ticker_A,Ticker_B,Direction,PnL
 1. `python main.py --fetch-data`
    ⟶ Calls `data_loader.py` to fetch adjusted close prices for selected tickers using yfinance.
 
-2. `python main.py --select-pairs`
-   ⟶ Calls `pair_selector.py` to test Engle-Granger cointegration on all pairs and store results.
+   2. `python main.py --select-pairs`
+      ⟶ Calls `pair_selector.py` to test Engle-Granger cointegration on all pairs and store results.
 
-3. `python main.py --generate-signals`
-   ⟶ Calls `signal_generator.py` to generate z-score-based trade signals.
+   3. `python main.py --generate-signals`
+      ⟶ Calls `signal_generator.py` to generate z-score-based trade signals.
 
-4. `python main.py --backtest`
-   ⟶ Calls `backtester.py` to simulate entry/exit trades and save PnL results.
+   4. `python main.py --backtest`
+      ⟶ Calls `backtester.py` to simulate entry/exit trades and save PnL results.
 
-5. `python main.py --shadow-log`
-   ⟶ Calls `shadow_logger.py` to record today’s active signals for review.
+   5. `python main.py --shadow-log`
+      ⟶ Calls `shadow_logger.py` to record today’s active signals for review.
 
-6. `streamlit run streamlit_dashboard.py`
-   ⟶ Launches the interactive visualization layer.
+   6. `streamlit run streamlit_dashboard.py`
+      ⟶ Launches the interactive visualization layer.
 
 ---
 
 ## ✅ CONSTRAINTS & ASSUMPTIONS
 
 * All signals and trades are executed **at daily close** only
-* Spread is defined as `spread = A - βB`, where `β` is the OLS hedge ratio
-* Rolling window for z-score is **30 days**
-* Entry Thresholds: `z < -1` (LongSpread), `z > +1` (ShortSpread)
-* Exit Threshold: `z` crosses 0
-* Backtest slippage = 0.1%; allocation = \$10,000 per trade
+  * Spread is defined as `spread = A - βB`, where `β` is the OLS hedge ratio
+  * Rolling window for z-score is **30 days**
+  * Entry Thresholds: `z < -1` (LongSpread), `z > +1` (ShortSpread)
+  * Exit Threshold: `z` crosses 0
+  * Backtest slippage = 0.1%; allocation = \$10,000 per trade
 
 ---
 
 ## ✅ STRATEGIC CODING GUIDELINES
 
 * **Every Python file must define at least one top-level function** for testability
-* **Use only CSV and Streamlit for I/O and UI**
-* **Avoid global variables**
-* **Use hardcoded tickers (e.g., \['KO', 'PEP', 'AAPL', 'MSFT']) for first version**
-* Parse dates properly when reading/writing CSVs
+  * **Use only CSV and Streamlit for I/O and UI**
+  * **Avoid global variables**
+  * **Use hardcoded tickers (e.g., \['KO', 'PEP', 'AAPL', 'MSFT']) for first version**
+  * Parse dates properly when reading/writing CSVs
 
 ---
 
