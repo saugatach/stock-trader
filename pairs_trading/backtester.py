@@ -5,9 +5,9 @@ SLIPPAGE = 0.001
 
 
 def backtest_signals(
-    data_file: str = "ohlcv_data.csv",
-    signals_file: str = "signal_log.csv",
-    output_file: str = "backtest_trades.csv",
+    data_file: str = "./pairs_trading/ohlcv_data.csv",
+    signals_file: str = "./pairs_trading/signal_log.csv",
+    output_file: str = "./pairs_trading/backtest_trades.csv",
 ) -> pd.DataFrame:
     prices = pd.read_csv(data_file, index_col=0, parse_dates=True)
     signals = pd.read_csv(signals_file, parse_dates=["Date"])

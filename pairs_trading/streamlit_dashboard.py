@@ -3,8 +3,8 @@ import streamlit as st
 
 
 def load_data():
-    trades = pd.read_csv("backtest_trades.csv")
-    signals = pd.read_csv("signal_log.csv")
+    trades = pd.read_csv("./pairs_trading/backtest_trades.csv")
+    signals = pd.read_csv("./pairs_trading/signal_log.csv")
     return trades, signals
 
 

@@ -18,8 +18,9 @@ def parse_args() -> argparse.Namespace:
 
 def main():
     args = parse_args()
+    print("Starting pipeline...")
     if args.fetch_data:
-        fetch_ohlcv_data(["KO", "PEP", "AAPL", "MSFT"], "2018-01-01", "2023-12-31")
+        fetch_ohlcv_data(["KO", "PEP", "AAPL", "MSFT"], "2020-06-30", "2025-06-10")
     if args.select_pairs:
         select_cointegrated_pairs()
     if args.generate_signals:

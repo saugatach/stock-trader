@@ -4,9 +4,12 @@ import yfinance as yf
 
 def fetch_ohlcv_data(tickers: list[str], start_date: str, end_date: str, output_file: str = "ohlcv_data.csv") -> pd.DataFrame:
     """Fetch adjusted close prices and save to CSV."""
-    data = yf.download(tickers, start=start_date, end=end_date, progress=False)["Adj Close"]
-    data.dropna(how="all", inplace=True)
-    data.to_csv(output_file)
+    try:
+        data = yf.download(tickers, start=start_date, end=end_date, progress=False)["Adj Close"]
+        data.dropna(how="all", inplace=True)
+        data.to_csv(output_file)
+    except Exception as e:
+        print(f"Error fetching data for tickers {tickers}: {e}")
     return data
 
 
