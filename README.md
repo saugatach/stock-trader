@@ -19,14 +19,10 @@ Install requirements (preferably inside a virtual environment):
 pip install -r pairs_trading/requirements.txt
 ```
 
-Run the pipeline step by step:
+Run the entire pipeline:
 
 ```bash
-python pairs_trading/main.py --fetch-data
-python pairs_trading/main.py --select-pairs
-python pairs_trading/main.py --generate-signals
-python pairs_trading/main.py --backtest
-python pairs_trading/main.py --shadow-log
+python -m pairs_trading.main --fetch-data --select-pairs --generate-signals --backtest --shadow-log
 ```
 
 Launch the dashboard to inspect results:

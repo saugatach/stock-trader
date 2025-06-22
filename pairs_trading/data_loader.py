@@ -12,7 +12,7 @@ def fetch_ohlcv_data(tickers: list[str], start_date: str, end_date: str, output_
     """Fetch adjusted close prices and save to CSV."""
     settings = helpers.load_settings_stocks()
     project_root = set_root.project_root
-    config = utils.file_utils.load_config(project_root=project_root, verbose=verbose)
+    config = utils.load_config.load_config(project_root=project_root, verbose=verbose)
 
     stockobj = gd.GetStockData(tickers, settings=settings, verbose=verbose)
     data = stockobj.getdata(start=start_date, end=end_date)

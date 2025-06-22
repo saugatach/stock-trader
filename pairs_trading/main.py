@@ -1,9 +1,9 @@
 import argparse
-from data_loader import fetch_ohlcv_data
-from pair_selector import select_cointegrated_pairs
-from signal_generator import generate_signals
-from backtester import backtest_signals
-from shadow_logger import log_today_signals
+from pairs_trading.data_loader import fetch_ohlcv_data
+from pairs_trading.pair_selector import select_cointegrated_pairs
+from pairs_trading.signal_generator import generate_signals
+from pairs_trading.backtester import backtest_signals
+from pairs_trading.shadow_logger import log_today_signals
 
 
 def parse_args() -> argparse.Namespace:
