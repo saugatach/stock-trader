@@ -8,7 +8,7 @@ import pandas as pd
 from stockanalysis import getstockdata as gd
 from stockanalysis import helpers
 
-def fetch_ohlcv_data(tickers: list[str], start_date: str, end_date: str, output_file: str = "ohlcv_data.csv", verbose=True) -> pd.DataFrame:
+def fetch_ohlcv_data(tickers: list[str], start_date: str, end_date: str, output_file: str = None, verbose=True) -> pd.DataFrame:
     """Fetch adjusted close prices and save to CSV."""
     settings = helpers.load_settings_stocks()
     project_root = set_root.project_root
@@ -16,10 +16,12 @@ def fetch_ohlcv_data(tickers: list[str], start_date: str, end_date: str, output_
 
     stockobj = gd.GetStockData(tickers, settings=settings, verbose=verbose)
     data = stockobj.getdata(start=start_date, end=end_date)
-    print(data)
-    data.dropna(how="all", inplace=True)
-    output_file = config['data'] + output_file
-    data.to_csv(output_file)
+    # print(data)
+    temp_data = data.copy()
+    temp_data.dropna(how="all", inplace=True)
+    data = temp_data
+    output_file = config['data'] + '/' + config.get('ohlcv_data_file', 'ohlcv_data.csv')
+    data.to_csv(output_file, index=True)
     return data
 
 

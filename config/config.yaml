@@ -1,3 +1,5 @@
 project_dir: "~/Files/Work/Computer/coding/projects/finance/stock-trader/"
-output_folder: "data/"
-data: "data/"
+output_folder: ""
+data: "data"
+ohlcv_data_file: "ohlcv_data.csv"
+selected_pairs_file: "selected_pairs.csv"
